@@ -390,7 +390,7 @@ function aphexTypegen(options: AphexTypegenOptions = {}): Plugin {
 					? ['generate:types', schema, output, ...pluginsArg]
 					: ['--no-install', 'aphex', 'generate:types', schema, output, ...pluginsArg];
 
-				const child = spawn(cmd, args, { cwd: root, stdio: 'pipe' });
+				const child = spawn(cmd, args, { cwd: root, stdio: 'pipe', shell: true });
 				let stderr = '';
 				child.stderr?.on('data', (d) => (stderr += d));
 				child.on('error', (err) => {
